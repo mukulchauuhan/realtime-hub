@@ -2,14 +2,24 @@
 const pool = require("./db");
 
 function setupSocket(io) {
-  // Listen to DB notifications
   pool.connect((err, client, release) => {
-    if (err) throw err;
-    client.query("LISTEN orders_channel");
+    if (err) {
+      console.error("DB connection error:", err);
+      return;
+    }
+
+    client.query("LISTEN orders_channel", (err) => {
+      if (err) console.error("Failed to LISTEN orders_channel:", err);
+    });
+
     client.on("notification", (msg) => {
-      const payload = JSON.parse(msg.payload);
-      console.log("DB Change:", payload);
-      io.emit("order_update", payload);
+      try {
+        const payload = JSON.parse(msg.payload);
+        console.log("DB Change:", payload);
+        io.emit("order_update", payload);
+      } catch (err) {
+        console.error("Failed to parse notification:", err);
+      }
     });
 
     // Handle client disconnect gracefully
@@ -22,6 +32,10 @@ function setupSocket(io) {
     console.log("New client connected:", socket.id);
     socket.on("disconnect", () => {
       console.log("Client disconnected:", socket.id);
+    });
+
+    socket.on("error", (err) => {
+      console.error("Socket error:", err);
     });
   });
 }
