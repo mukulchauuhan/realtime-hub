@@ -32,9 +32,8 @@ A robust and scalable real-time notification system that listens to changes in a
 
 ### 1. Clone the repository
 
-``
-git clone https://github.com/mukulchauuhan/realtime-hub.git
-cd realtime-hub``
+``git clone https://github.com/mukulchauuhan/realtime-hub.git``
+``cd realtime-hub``
 
 ### 2. Install dependencies
 ``npm install``
@@ -43,15 +42,15 @@ cd realtime-hub``
 ``Create a PostgreSQL database, e.g. realtime_hub_db.``
 
 Run the initialization script to set up tables and triggers:
-psql -U <your-username> -d realtime_hub_db -f db/init.sql
+``psql -U <your-username> -d realtime_hub_db -f db/init.sql``
 
 ### 4. Configure environment variables
-``Copy .env.example to .env:
-cp .env.example .env``
+``Copy .env.example to .env:``
+``cp .env.example .env``
 Edit .env and add your database connection string:
 
-``DATABASE_URL=postgresql://<username>:<password>@localhost:5432/realtime_hub_db
-PORT=3000``
+``DATABASE_URL=postgresql://<username>:<password>@localhost:5432/realtime_hub_db``
+``PORT=3000``
 
 ### 5. Start the server
 ``npm start``
@@ -59,7 +58,7 @@ The app will run on http://localhost:3000/. Open multiple browser tabs to test r
 
 ---
 ## 📂 Folder Structure
-
+```
 realtime-hub/
 ├── db/
 │   └── init.sql             # Database schema and triggers
@@ -75,6 +74,7 @@ realtime-hub/
 ├── package.json            # Node.js metadata and scripts
 ├── package-lock.json       # Dependency lock file
 └── README.md               # Project documentation
+```
 
 ✅ Best Practices Implemented
 🔐 Sensitive data kept out of version control
