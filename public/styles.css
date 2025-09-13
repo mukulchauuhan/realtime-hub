@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.insert {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.update {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+
+.delete {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.timestamp {
+    font-size: 0.85em;
+    color: #666;
+    float: right;
+}

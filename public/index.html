@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders Updates</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Orders Updates</h1>
+  <ul id="orders"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const orders = document.getElementById("orders");
+
+    socket.on("order_update", data => {
+      const li = document.createElement("li");
+      li.classList.add(data.operation.toLowerCase());
+
+      const time = new Date().toLocaleTimeString();
+      li.innerHTML = `
+        <strong>${data.operation.toUpperCase()}</strong> - ID: ${data.id} | ${data.customer_name || ''} ${data.product_name || ''} ${data.status || ''}
+        <span class="timestamp">${time}</span>
+      `;
+
+      orders.prepend(li);
+
+      // Optional: remove older updates after 5 seconds
+      setTimeout(() => li.remove(), 15000);
+    });
+  </script>
+</body>
+</html>
